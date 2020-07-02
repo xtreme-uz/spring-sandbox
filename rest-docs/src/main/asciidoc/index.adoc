@@ -1,19 +1,103 @@
-= Sample API Documentation
+:doctype: person
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
 
+= Spring RestDocs
+
+[introduction]
 == Introduction
+
 This is an example of Spring REST Docs generated documentation.
 
-== Persons API
-Collection of CRUD API endpoints used to manipulate persons registered in the application.
+[[overview-http-verbs]]
+== HTTP verbs
 
-=== Get Person By Id
-Obtains a specific person registered in the application by its unique identifier.
+The Example API tries to adhere as closely as possible to standard HTTP and REST conventions in its
+use of HTTP verbs.
 
-==== Sample Request
-include::{snippets}/persons/get-by-id/http-request.adoc[]
+|===
+| Verb | Usage
 
-==== Sample Response
-include::{snippets}/persons/get-by-id/http-response.adoc[]
+| `GET`
+| Used to retrieve a resource
 
-==== CURL sample
-include::{snippets}/persons/get-by-id/curl-request.adoc[]
+| `POST`
+| Used to create a new resource
+
+| `PUT`
+| Used to update an existing resource, overwrites all fields
+
+| `PATCH`
+| Used for partial updates to an existing resource
+
+| `DELETE`
+| Used to delete an existing resource
+|===
+
+[[overview-http-status-codes]]
+== HTTP status codes
+
+The JSON Placeholder API uses a few status codes in the API.
+
+|===
+| Status code | Usage
+
+| `200 OK`
+| The request completed successfully
+
+| `201 Created`
+| A new resource has been created successfully. The resource's URI is available from the response's
+`Location` header
+
+| `404 Not Found`
+| The requested resource did not exist or the operation is not supported.
+
+|===
+
+For more information on status codes, see the https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html[w3 standard]
+
+[[resources-posts]]
+== People
+
+The people resource returns people for various inputs
+
+[[person-list-example]]
+=== List of People
+
+ A `GET` request with no parameters will return a list of all peolpe
+
+==== _example request:_
+
+include::{snippets}/people/get-all/curl-request.adoc[]
+
+or
+
+include::{snippets}/people/get-all/http-request.adoc[]
+
+==== _example response:_
+
+include::{snippets}/people/get-all/http-response.adoc[]
+
+
+
+[[get-person-by-id-example]]
+=== Get person by personId
+
+ A `GET` request with a person id will return the person with that id if it exists in the list of db table.
+
+==== _example request:_
+
+include::{snippets}/people/get-by-id/curl-request.adoc[]
+
+or
+
+include::{snippets}/people/get-by-id/http-request.adoc[]
+
+==== _example response:_
+
+include::{snippets}/people/get-all/http-response.adoc[]
+
+

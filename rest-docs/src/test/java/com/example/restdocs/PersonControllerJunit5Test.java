@@ -39,12 +39,21 @@ public class PersonControllerJunit5Test {
     }
 
     @Test
-    public void getPersonByIdShouldReturnOk() throws Exception {
+    public void getAllShouldReturnOk() throws Exception {
         this.mockMvc.perform(
-                RestDocumentationRequestBuilders.get("/persons/1"))
+                RestDocumentationRequestBuilders.get("/people"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
-                .andDo(document("persons/get-by-id"));
+                .andDo(document("people/get-all"));
+    }
+
+    @Test
+    public void getPersonByIdShouldReturnOk() throws Exception {
+        this.mockMvc.perform(
+                RestDocumentationRequestBuilders.get("/people/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andDo(document("people/get-by-id"));
     }
 
 }
