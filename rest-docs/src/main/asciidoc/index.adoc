@@ -101,3 +101,21 @@ include::{snippets}/people/get-by-id/http-request.adoc[]
 include::{snippets}/people/get-all/http-response.adoc[]
 
 
+
+[[create-person-example]]
+=== Create person
+
+ A `POST` request is used to access the CRUD create.
+
+==== _example request:_
+
+include::{snippets}/people/create/curl-request.adoc[]
+
+or
+
+include::{snippets}/people/create/http-request.adoc[]
+
+==== _example response:_
+
+include::{snippets}/people/create/http-response.adoc[]
+

@@ -1,14 +1,9 @@
 package com.example.restdocs;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  * Author: Rustambekov Avazbek
@@ -20,14 +15,19 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping("/people")
 public class PersonController {
 
-    @GetMapping(produces = "application/json")
+    @GetMapping
     public List<Person> getAll() {
         return Arrays.asList(new Person(1, "John Doe"), new Person(2, "Alex Murphy"));
     }
 
-    @RequestMapping(method = GET, path = "/{id}", produces = "application/json")
+    @GetMapping(path = "/{id}")
     public Person getPersonById(@PathVariable int id) {
         return new Person(id, "John Doe");
+    }
+
+    @PostMapping
+    public Person save(@RequestBody Person person) {
+        return person;
     }
 
 }
