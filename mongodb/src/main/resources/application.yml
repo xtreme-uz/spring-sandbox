@@ -1,0 +1,13 @@
+logging:
+  level:
+    com: TRACE
+    org:
+      springframework: ERROR
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: test
+server:
+  port: 8080
