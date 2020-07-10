@@ -1,0 +1,14 @@
+amazon:
+  endpoint: https://s3.ap-south-1.amazonaws.com
+  access-key: AKIAYH3M4J2YQSCSZLMQ
+  secret-key: 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
+  bucket-name: aws-spring-s3
+system:
+  proxy:
+    host: http://172.28.5.70
+    port: 8080
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
