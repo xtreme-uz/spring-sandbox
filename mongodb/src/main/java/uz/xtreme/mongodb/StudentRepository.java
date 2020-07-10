@@ -1,6 +1,7 @@
 package uz.xtreme.mongodb;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import org.springframework.data.mongodb.repository.Tailable;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -14,7 +15,8 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface StudentRepository extends ReactiveMongoRepository<Student, String> {
 
-    Flux<Student> findByFirstName(String firstName);
+    @Tailable
+    Flux<Student> findAllByFirstName(String firstName);
     Mono<Student> findOneByFirstName(String firstName);
 
 }
