@@ -66,14 +66,11 @@ public class PersonControllerJunit5Test {
 
     @Test
     public void createPersonShouldReturnOk() throws Exception {
-
-        Map<String, Object> content = new HashMap<>();
-        content.put("id", 2L);
-        content.put("fullName", "John Doe");
+        Person person = new Person(2L, "John Doe");
 
         this.mockMvc.perform(RestDocumentationRequestBuilders
                 .post("/people")
-                .content(this.objectMapper.writeValueAsString(content))
+                .content(this.objectMapper.writeValueAsString(person))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))

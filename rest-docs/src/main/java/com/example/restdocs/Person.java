@@ -10,6 +10,14 @@ public class Person {
     private long id;
     private String fullName;
 
+    public Person() {
+    }
+
+    public Person(long id, String fullName) {
+        this.id = id;
+        this.fullName = fullName;
+    }
+
     public long getId() {
         return id;
     }
@@ -23,11 +31,6 @@ public class Person {
     }
 
     public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public Person(long id, String fullName) {
-        this.id = id;
         this.fullName = fullName;
     }
 
