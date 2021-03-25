@@ -15,9 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -31,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
-public class PersonControllerJunit5Test {
+class PersonControllerJunit5Test {
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -47,7 +44,7 @@ public class PersonControllerJunit5Test {
     }
 
     @Test
-    public void getAllShouldReturnOk() throws Exception {
+    void getAllShouldReturnOk() throws Exception {
         this.mockMvc.perform(
                 RestDocumentationRequestBuilders.get("/people"))
                 .andExpect(status().isOk())
@@ -56,7 +53,7 @@ public class PersonControllerJunit5Test {
     }
 
     @Test
-    public void getPersonByIdShouldReturnOk() throws Exception {
+    void getPersonByIdShouldReturnOk() throws Exception {
         this.mockMvc.perform(
                 RestDocumentationRequestBuilders.get("/people/1"))
                 .andExpect(status().isOk())
@@ -65,7 +62,7 @@ public class PersonControllerJunit5Test {
     }
 
     @Test
-    public void createPersonShouldReturnOk() throws Exception {
+    void createPersonShouldReturnOk() throws Exception {
         Person person = new Person(2L, "John Doe");
 
         this.mockMvc.perform(RestDocumentationRequestBuilders
