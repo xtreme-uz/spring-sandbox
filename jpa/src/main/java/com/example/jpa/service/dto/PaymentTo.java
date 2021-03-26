@@ -14,4 +14,8 @@ public class PaymentTo {
     private PaymentType type;
     private Object params;
 
+    public PaymentTo(PaymentType type, Object params) {
+        this.type = type;
+        this.params = params;
+    }
 }

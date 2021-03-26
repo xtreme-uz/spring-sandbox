@@ -24,6 +24,7 @@ public class Payment {
     private PaymentType type;
 
     @Convert(converter = PaymentParamConverter.class)
+    @Column(name = "params", columnDefinition = "TEXT")
     private JsonNode params;
 
 }

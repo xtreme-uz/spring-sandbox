@@ -1,8 +1,6 @@
-package com.example.jpa.service.impl;
+package com.example.jpa.service;
 
-import com.example.jpa.domain.Payment;
 import com.example.jpa.repository.PaymentRepository;
-import com.example.jpa.service.PaymentService;
 import com.example.jpa.service.dto.PaymentTo;
 import com.example.jpa.service.mapper.PaymentMapper;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +15,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public PaymentTo create(PaymentTo dto) {
-        Payment payment = mapper.fromDto(dto);
-        Payment save = repository.save(payment);
-        return mapper.toDto(save);
+        return mapper.toDto(repository.save(mapper.fromDto(dto)));
     }
 
 }
