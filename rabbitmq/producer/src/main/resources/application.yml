@@ -1,0 +1,5 @@
+amqp:
+  queue:
+    name: user-data
+  exchange:
+    name: user-data-exchange
