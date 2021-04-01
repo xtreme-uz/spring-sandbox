@@ -8,6 +8,7 @@ import lombok.SneakyThrows;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.springframework.data.domain.Page;
 
 @Mapper(componentModel = "spring")
 public interface PaymentMapper {
@@ -19,6 +20,10 @@ public interface PaymentMapper {
 
     @Mapping(target = "params", source = "params", qualifiedByName = "toJsonNode")
     Payment fromDto(PaymentTo dto);
+
+    default Page<PaymentTo> toDtoPage(Page<Payment> payments) {
+        return payments.map(this::toDto);
+    }
 
     @Named("toJsonNode")
     static JsonNode toJsonNode(Object object) {
