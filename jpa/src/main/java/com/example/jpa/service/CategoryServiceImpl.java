@@ -32,6 +32,19 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
+    public CategoryTo update(CategoryTo dto) {
+        if (dto.getParentId() == null)
+            return mapper.toDto(repository.save(mapper.fromDto(dto)));
+
+        Category newParent = repository.findById(dto.getParentId()).orElseThrow();
+        Category category  = repository.findById(dto.getId()).orElseThrow();
+
+        category.moveCategory(newParent);
+        return mapper.toDto(repository.save(category));
+    }
+
+    @Override
     public List<SimpleCategoryTo> getCategoryTree() {
         return mapper.toSimpleCategory(repository.findAllByParentIsNull());
     }

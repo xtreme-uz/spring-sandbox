@@ -20,6 +20,11 @@ public class CategoryController {
         return service.create(category);
     }
 
+    @PutMapping
+    public CategoryTo update(@RequestBody CategoryTo category) {
+        return service.update(category);
+    }
+
     @GetMapping
     public List<SimpleCategoryTo> getCategoryTree() {
         return service.getCategoryTree();

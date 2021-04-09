@@ -24,7 +24,7 @@ public class Category {
     @ManyToOne(fetch = FetchType.LAZY)
     private Category parent;
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Category> subCategories;
 
     public void addSubCategory(Category subCategory) {
@@ -34,7 +34,12 @@ public class Category {
 
     public void removeCategory(Category category) {
         this.subCategories.remove(category);
-        category.setParent(null);
+    }
+
+    public void moveCategory(Category destination) {
+        if (this.parent != null)
+            this.parent.removeCategory(this);
+        destination.addSubCategory(this);
     }
 
 }

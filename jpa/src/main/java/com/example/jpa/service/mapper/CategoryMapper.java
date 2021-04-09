@@ -17,5 +17,7 @@ public interface CategoryMapper {
     @Mapping(target = "parentId", source = "parent.id")
     CategoryTo toDto(Category category);
 
+    Category fromDto(CategoryTo category);
+
     List<SimpleCategoryTo> toSimpleCategory(List<Category> categories);
 }
