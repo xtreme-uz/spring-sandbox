@@ -1,57 +1,41 @@
 package uz.xtreme.elasticsearch;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.io.Resource;
+import uz.xtreme.elasticsearch.document.Product;
+import uz.xtreme.elasticsearch.repository.ProductRepository;
 
-import java.util.List;
-import java.util.Set;
-
+/**
+ * A sample application that demonstrates how to use Elasticsearch.
+ */
 @SpringBootApplication
 public class DataElasticsearchApplication implements CommandLineRunner {
 
-    @Autowired
-    private ProductRepository productRepository;
+  @Autowired
+  private ProductRepository productRepository;
 
-    public static void main(String[] args) {
-        SpringApplication.run(DataElasticsearchApplication.class, args);
-    }
+  @Autowired
+  private ObjectMapper objectMapper;
 
-    @Override
-    public void run(String... args) {
+  @Value("classpath:data/products.json")
+  private Resource products;
 
-        Product product = new Product(
-                1L,
-                "iPhone",
-                1,
-                new Product.Description(
-                        "desc ru",
-                        "desc lat",
-                        "desc kir"),
-                "UZS",
-                100.0,
-                200.0,
-                true,
-                true,
-                10,
-                10,
-                "ACTIVE",
-                "NEW",
-                List.of(new Product.Image(
-                        true,
-                        new Product.Image.ImageData(
-                                "original",
-                                "large",
-                                "medium",
-                                "small"))),
-                List.of(new Product.PriceOption(
-                        1,
-                        3,
-                        80.0))
-        );
-        productRepository.save(product);
+  public static void main(String[] args) {
+    SpringApplication.run(DataElasticsearchApplication.class, args);
+  }
 
-        productRepository.deleteByIdIn(Set.of(1L));
-    }
+  @Override
+  public void run(String... args) throws IOException {
+    List<Product> productsList = objectMapper
+            .readValue(products.getInputStream(), new TypeReference<>() {});
+    productRepository.saveAll(productsList);
+  }
 }
