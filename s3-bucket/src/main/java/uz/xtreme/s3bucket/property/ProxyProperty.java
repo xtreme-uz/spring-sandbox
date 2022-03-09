@@ -1,4 +1,4 @@
-package uz.xtreme.awss3.property;
+package uz.xtreme.s3bucket.property;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

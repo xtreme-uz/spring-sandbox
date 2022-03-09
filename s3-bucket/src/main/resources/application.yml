@@ -1,7 +1,7 @@
 amazon:
   endpoint: https://s3.ap-south-1.amazonaws.com
-  access-key: AKIAYH3M4J2YQSCSZLMQ
-  secret-key: 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
+  access-key: ${AWS_ACCESS_KEY}
+  secret-key: ${AWS_SECRET_KEY}
   bucket-name: aws-spring-s3
 system:
   proxy:

@@ -1,11 +1,11 @@
-package uz.xtreme.awss3;
+package uz.xtreme.s3bucket;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import uz.xtreme.awss3.property.AmazonS3Property;
+import uz.xtreme.s3bucket.property.AmazonS3Property;
 
 import java.io.IOException;
 

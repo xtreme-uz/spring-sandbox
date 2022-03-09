@@ -1,4 +1,4 @@
-package uz.xtreme.awss3.config;
+package uz.xtreme.s3bucket.config;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Protocol;
@@ -9,8 +9,8 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import uz.xtreme.awss3.property.AmazonS3Property;
-import uz.xtreme.awss3.property.ProxyProperty;
+import uz.xtreme.s3bucket.property.AmazonS3Property;
+import uz.xtreme.s3bucket.property.ProxyProperty;
 
 /**
  * Author: Rustambekov Avazbek

@@ -13,6 +13,7 @@
         <module>data-elasticsearch</module>
         <module>data-mongodb</module>
         <module>data-jpa</module>
+        <module>s3-bucket</module>
     </modules>
 
 </project>

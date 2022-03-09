@@ -1,4 +1,4 @@
-package uz.xtreme.awss3;
+package uz.xtreme.s3bucket;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
