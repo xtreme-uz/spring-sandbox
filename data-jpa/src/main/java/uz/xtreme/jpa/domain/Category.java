@@ -1,15 +1,15 @@
 package uz.xtreme.jpa.domain;
 
 import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
-@Data
-@ToString(exclude = "subCategories")
-@EqualsAndHashCode(exclude = "subCategories")
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "category")
 public class Category {
@@ -21,9 +21,11 @@ public class Category {
     @Column(name = "name")
     private String name;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     private Category parent;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Category> subCategories;
 
@@ -32,14 +34,26 @@ public class Category {
         subCategory.setParent(this);
     }
 
-    public void removeCategory(Category category) {
-        this.subCategories.remove(category);
+    public void removeSubCategory(Category subCategory) {
+        this.subCategories.remove(subCategory);
     }
 
-    public void moveCategory(Category destination) {
+    public void changeParentCategory(Category newParent) {
         if (this.parent != null)
-            this.parent.removeCategory(this);
-        destination.addSubCategory(this);
+            this.parent.removeSubCategory(this);
+        newParent.addSubCategory(this);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Category category = (Category) o;
+        return id != null && Objects.equals(id, category.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

@@ -40,7 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
         Category newParent = repository.findById(dto.getParentId()).orElseThrow();
         Category category  = repository.findById(dto.getId()).orElseThrow();
 
-        category.moveCategory(newParent);
+        category.changeParentCategory(newParent);
         return mapper.toDto(repository.save(category));
     }
 

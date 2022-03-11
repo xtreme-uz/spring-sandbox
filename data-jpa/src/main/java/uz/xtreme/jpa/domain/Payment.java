@@ -1,17 +1,17 @@
 package uz.xtreme.jpa.domain;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 import uz.xtreme.jpa.domain.converters.PaymentParamConverter;
 import uz.xtreme.jpa.domain.enums.PaymentType;
 
 import javax.persistence.*;
+import java.util.Objects;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "payment")
 public class Payment {
@@ -27,4 +27,16 @@ public class Payment {
     @Column(name = "params", columnDefinition = "TEXT")
     private JsonNode params;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Payment payment = (Payment) o;
+        return id != null && Objects.equals(id, payment.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
