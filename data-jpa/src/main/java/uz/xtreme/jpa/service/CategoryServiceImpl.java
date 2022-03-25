@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import uz.xtreme.jpa.domain.Category;
 import uz.xtreme.jpa.repository.CategoryRepository;
 import uz.xtreme.jpa.service.dto.CategoryTo;
-import uz.xtreme.jpa.service.dto.SimpleCategoryTo;
 import uz.xtreme.jpa.service.mapper.CategoryMapper;
 
 import java.util.List;
@@ -20,33 +19,39 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Transactional
-    public CategoryTo create(CategoryTo category) {
+    public Category create(CategoryTo category) {
         if (category.getParentId() == null) {
-            return mapper.toDto(repository.save(mapper.fromCreateDto(category)));
+            return repository.save(mapper.fromCreateDto(category));
         }
         Category parent = repository.findById(category.getParentId()).orElseThrow();
         Category child = mapper.fromCreateDto(category);
         parent.addSubCategory(child);
 
-        return mapper.toDto(repository.save(child));
+        return repository.save(child);
     }
 
     @Override
     @Transactional
-    public CategoryTo update(CategoryTo dto) {
+    public Category update(CategoryTo dto) {
         if (dto.getParentId() == null)
-            return mapper.toDto(repository.save(mapper.fromDto(dto)));
+            return repository.save(mapper.fromDto(dto));
 
         Category newParent = repository.findById(dto.getParentId()).orElseThrow();
         Category category  = repository.findById(dto.getId()).orElseThrow();
 
         category.changeParentCategory(newParent);
-        return mapper.toDto(repository.save(category));
+        return repository.save(category);
     }
 
     @Override
-    public List<SimpleCategoryTo> getCategoryTree() {
-        return mapper.toSimpleCategory(repository.findAllByParentIsNull());
+    public Category findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Category not found"));
+    }
+
+    @Override
+    public List<Category> getCategoryTree() {
+        return repository.findAllParentCategories();
     }
 
 }

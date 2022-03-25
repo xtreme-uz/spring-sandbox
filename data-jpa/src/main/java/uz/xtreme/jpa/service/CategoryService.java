@@ -1,16 +1,18 @@
 package uz.xtreme.jpa.service;
 
 import org.springframework.transaction.annotation.Transactional;
+import uz.xtreme.jpa.domain.Category;
 import uz.xtreme.jpa.service.dto.CategoryTo;
-import uz.xtreme.jpa.service.dto.SimpleCategoryTo;
 
 import java.util.List;
 
 public interface CategoryService {
-    CategoryTo create(CategoryTo category);
+    Category create(CategoryTo category);
 
     @Transactional
-    CategoryTo update(CategoryTo category);
+    Category update(CategoryTo category);
 
-    List<SimpleCategoryTo> getCategoryTree();
+    Category findById(Long id);
+
+    List<Category> getCategoryTree();
 }

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -14,5 +14,5 @@ public class SimpleCategoryTo {
 
     private String name;
 
-    private List<SimpleCategoryTo> subCategories;
+    private Set<SimpleCategoryTo> subCategories;
 }

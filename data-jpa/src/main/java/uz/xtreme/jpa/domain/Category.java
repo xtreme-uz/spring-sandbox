@@ -1,12 +1,19 @@
 package uz.xtreme.jpa.domain;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
+@NamedEntityGraph(
+        name = "Category.tree",
+        attributeNodes = @NamedAttributeNode(value = "subCategories", subgraph = "Category.subtree"),
+        subgraphs = @NamedSubgraph(name = "Category.subtree", attributeNodes = @NamedAttributeNode(value = "subCategories"))
+)
 @Getter
 @Setter
 @ToString
@@ -27,7 +34,7 @@ public class Category {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-    private List<Category> subCategories;
+    private Set<Category> subCategories;
 
     public void addSubCategory(Category subCategory) {
         this.subCategories.add(subCategory);
