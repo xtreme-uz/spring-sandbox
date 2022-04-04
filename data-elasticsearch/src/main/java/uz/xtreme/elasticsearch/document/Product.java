@@ -2,41 +2,42 @@ package uz.xtreme.elasticsearch.document;
 
 import static uz.xtreme.elasticsearch.document.Product.INDEX_NAME;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
-import org.springframework.data.elasticsearch.annotations.Setting;
+import org.springframework.data.elasticsearch.annotations.*;
 
 /**
  * Product document.
  */
 @Data
 @Document(indexName = INDEX_NAME)
-@Setting(settingPath = "elasticsearch/product.json")
+@Setting(settingPath = "product_settings.json")
 public class Product {
 
-  public static final String INDEX_NAME = "product";
+  public static final String INDEX_NAME = "products";
 
   @Id
   @Field(type = FieldType.Keyword)
   private Long id;
 
-  @Field(type = FieldType.Text, analyzer = "autocomplete", searchAnalyzer = "autocomplete_search")
+  @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX")
+  private OffsetDateTime created;
+
+  @Field(type = FieldType.Text, analyzer = "my_autocomplete", searchAnalyzer = "my_autocomplete_search")
   private String name;
 
   @Field(type = FieldType.Keyword)
   private long shopId;
 
-  @Field(type = FieldType.Text, analyzer = "autocomplete", searchAnalyzer = "cyrillic")
+  @Field(type = FieldType.Text, analyzer = "my_autocomplete", searchAnalyzer = "cyrillic")
   private String descriptionRu;
 
-  @Field(type = FieldType.Text, analyzer = "autocomplete", searchAnalyzer = "latin")
+  @Field(type = FieldType.Text, analyzer = "my_autocomplete", searchAnalyzer = "latin")
   private String descriptionUzLat;
 
-  @Field(type = FieldType.Text, analyzer = "autocomplete", searchAnalyzer = "cyrillic")
+  @Field(type = FieldType.Text, analyzer = "my_autocomplete", searchAnalyzer = "cyrillic")
   private String descriptionUzKir;
 
   @Field(type = FieldType.Keyword)
