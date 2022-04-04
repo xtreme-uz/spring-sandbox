@@ -20,23 +20,37 @@ import uz.xtreme.elasticsearch.service.ProductService;
 @RequestMapping("/api")
 public class ProductController {
 
-  private final ProductService productService;
+    private final ProductService productService;
 
-  /**
-   * {@code SEARCH  /_search/products?query=:query} : search for the product corresponding
-   * to the query.
-   *
-   * @param query the query of the product search.
-   * @param pageable the pagination information.
-   * @return the result of the search.
-   */
-  @GetMapping("/_search/products")
-  public Page<Product> searchProducts(
-          @RequestParam String query,
-          Pageable pageable
-  ) {
-    log.info("Searching products with query: {}", query);
-    return productService.search(query, pageable);
-  }
+    /**
+     * {@code SEARCH  /_search/products?query=:query} : search for the product corresponding
+     * to the query.
+     *
+     * @param query    the query of the product search.
+     * @param pageable the pagination information.
+     * @return the result of the search.
+     */
+    @GetMapping("/_search/products")
+    public Page<Product> searchProducts(
+            @RequestParam String query,
+            Pageable pageable
+    ) {
+        log.info("Searching products with query: {}", query);
+        return productService.search(query, pageable);
+    }
+
+    /**
+     * {@code GET  /_random/products} : get a products in random order.
+     *
+     * @param pageable the pagination information.
+     * @return the list of products.
+     */
+    @GetMapping("/_random/products")
+    public Page<Product> findRandomProducts(
+            @RequestParam String salt,
+            Pageable pageable) {
+        log.info("Getting products in random order");
+        return productService.findRandom(salt, pageable);
+    }
 
 }

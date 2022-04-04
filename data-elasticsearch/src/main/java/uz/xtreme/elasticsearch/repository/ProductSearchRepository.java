@@ -6,4 +6,6 @@ import uz.xtreme.elasticsearch.document.Product;
 
 public interface ProductSearchRepository {
   Page<Product> search(String query, Pageable pageable);
+
+  Page<Product> findRandomSeed(String salt, Pageable pageable);
 }

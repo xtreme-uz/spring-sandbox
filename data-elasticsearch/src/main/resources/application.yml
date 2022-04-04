@@ -1,7 +1,4 @@
 spring:
   elasticsearch:
-    rest:
-      uris:
-        - localhost:9200
-      username: elastic
-      password: password
+    username: elastic
+    password: password

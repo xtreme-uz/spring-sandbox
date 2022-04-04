@@ -18,4 +18,9 @@ public class ProductServiceImpl implements ProductService {
   public Page<Product> search(String query, Pageable pageable) {
     return repository.search(query, pageable);
   }
+
+  @Override
+  public Page<Product> findRandom(String salt, Pageable pageable) {
+    return repository.findRandomSeed(salt, pageable);
+  }
 }

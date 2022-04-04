@@ -13,7 +13,7 @@ import org.springframework.data.elasticsearch.annotations.*;
  */
 @Data
 @Document(indexName = INDEX_NAME)
-@Setting(settingPath = "product_settings.json")
+@Setting(settingPath = "elasticsearch/product_settings.json")
 public class Product {
 
   public static final String INDEX_NAME = "products";
@@ -22,7 +22,7 @@ public class Product {
   @Field(type = FieldType.Keyword)
   private Long id;
 
-  @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX")
+  @Field(type = FieldType.Date, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX")
   private OffsetDateTime created;
 
   @Field(type = FieldType.Text, analyzer = "my_autocomplete", searchAnalyzer = "my_autocomplete_search")

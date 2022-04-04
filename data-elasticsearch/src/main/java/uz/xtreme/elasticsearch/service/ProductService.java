@@ -6,4 +6,6 @@ import uz.xtreme.elasticsearch.document.Product;
 
 public interface ProductService {
   Page<Product> search(String query, Pageable pageable);
+
+  Page<Product> findRandom(String salt, Pageable pageable);
 }
