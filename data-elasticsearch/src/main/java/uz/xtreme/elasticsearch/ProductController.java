@@ -32,7 +32,7 @@ public class ProductController {
      */
     @GetMapping("/_search/products")
     public Page<Product> searchProducts(
-            @RequestParam String query,
+            @RequestParam(required = false) String query,
             Pageable pageable
     ) {
         log.info("Searching products with query: {}", query);
