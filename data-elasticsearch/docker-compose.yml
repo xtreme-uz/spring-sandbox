@@ -15,3 +15,7 @@ services:
         hard: -1
     ports:
       - '9200:9200'
+
+# Install analysis-icu plugin in elasticsearch
+# 1) docker exec -it elasticsearch bin/elasticsearch-plugin install analysis-icu
+# 2) docker restart elasticsearch
