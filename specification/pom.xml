@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot JPA specification</description>
 	<properties>
 		<java.version>11</java.version>
-		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
+		<org.mapstruct.version>1.5.4.Final</org.mapstruct.version>
 		<org.hibernate.version>5.4.29.Final</org.hibernate.version>
 	</properties>
 	<dependencies>
