@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>uz.xtreme</groupId>
-    <artifactId>s3bucket</artifactId>
+    <artifactId>s3-bucket</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>s3-bucket</name>
 

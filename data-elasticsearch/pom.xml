@@ -10,9 +10,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>uz.xtreme</groupId>
-    <artifactId>elasticsearch</artifactId>
+    <artifactId>data-elasticsearch</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>elasticsearch</name>
+    <name>data-elasticsearch</name>
 
     <properties>
         <java.version>11</java.version>

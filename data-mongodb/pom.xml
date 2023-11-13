@@ -10,9 +10,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>uz.xtreme</groupId>
-    <artifactId>mongodb</artifactId>
+    <artifactId>data-mongodb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mongodb</name>
+    <name>data-mongodb</name>
 
     <properties>
         <java.version>11</java.version>

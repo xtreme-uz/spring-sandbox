@@ -11,9 +11,17 @@
 
     <modules>
         <module>data-elasticsearch</module>
-        <module>data-mongodb</module>
         <module>data-jpa</module>
+        <module>data-mongodb</module>
+        <module>rabbitmq/consumer</module>
+        <module>rabbitmq/producer</module>
+        <module>rabbitmq/rpc-server</module>
+        <module>rabbitmq/rpc-client</module>
+        <module>rest-docs</module>
         <module>s3-bucket</module>
+        <module>serverless</module>
+        <module>specification</module>
+        <module>validation</module>
     </modules>
 
 </project>

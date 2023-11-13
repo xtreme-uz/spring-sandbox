@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>uz.xtreme</groupId>
-    <artifactId>jpa</artifactId>
+    <artifactId>data-jpa</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>data-jpa</name>
 
